@@ -18,7 +18,7 @@ for line in f.readlines():
         for i in range(LOG_PER_MAP):
 	        user_id = randrange(1,USER_NUM)
 	        key = randrange(0,SECONDS)
-	        val = str(user_id) + " " + state[randrange(1)] 
+	        val = str(user_id) + " " + state[randrange(2)] 
 	        ot.write('%s %s\n' % (key,val))
 
 f.close()
