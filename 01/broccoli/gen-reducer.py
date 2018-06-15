@@ -2,14 +2,20 @@
 from operator import itemgetter 
 import datetime
 import sys 
-for line in sys.stdin:
+
+
+f = open('output.txt','r')
+# for line in sys.stdin:
+for line in f.readlines():
 	line = line.strip()
-	seconds, userid, state = line.split(' ',1)
+	seconds, userid, state = line.split(' ',3)
 
 	date = datetime.date.today()
 
 	output_line = date.isoformat() + ' ' + \
-		datetime.timedelta(seconds=seconds) + ' ' + \
+		str(datetime.timedelta(seconds=int(seconds))) + ' ' + \
 		str(userid) + ' ' + \
 		state 
-	print output_line
+	print (output_line)
+
+f.close()
