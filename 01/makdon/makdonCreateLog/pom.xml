@@ -28,7 +28,7 @@
         </dependency>
     </dependencies>
 
-
+shade
     <build>
         <plugins>
             <plugin>

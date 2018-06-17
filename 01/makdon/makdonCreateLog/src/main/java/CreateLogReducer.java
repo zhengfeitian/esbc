@@ -4,19 +4,22 @@ import java.util.regex.*;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 
-public class CreateLogReducer extends Reducer<IntWritable, Text , Text, Text> {
+public class CreateLogReducer extends Reducer<IntWritable, Text , Text, NullWritable> {
     Text result = new Text();
-    Text empty_text = new Text("[end]");
+    Text empty_text = new Text("");
 
 
     public void reduce(IntWritable	key, Iterable<Text> logs_raw, Context context) throws IOException,InterruptedException {
+
+
         ArrayList<ArrayList<String>> logs = new ArrayList<ArrayList<String>>();
         for(Text log_raw:logs_raw) {
             ArrayList<String> log = new ArrayList<String>();
-            String log_text = new String(log_raw.getBytes());
+            String log_text = new String(log_raw.toString());
             log.add(log_text);
             Pattern pattern = Pattern.compile("[0-9][0-9]:[0-9][0-9]:[0-9][0-9]");
             Matcher m = pattern.matcher(log_text);
@@ -34,6 +37,7 @@ public class CreateLogReducer extends Reducer<IntWritable, Text , Text, Text> {
 
         // the raw logs process done;
         //start to sort;
+
         Collections.sort(logs, new Comparator<ArrayList<String>>() {
             public int compare(ArrayList<String> o1, ArrayList<String> o2) {
                 return Integer.valueOf(o1.get(1)) > Integer.valueOf(o2.get(1)) ? 1:-1;
@@ -42,11 +46,13 @@ public class CreateLogReducer extends Reducer<IntWritable, Text , Text, Text> {
 
         //TODO:随机交换几对以模拟时间同步导致的log错乱
 
-        for(ArrayList<String> log:logs){
+        for(ArrayList<String> log:logs) {
             result.set(log.get(0));
             empty_text.set(String.valueOf(key.get()));
-            context.write(result,null);
+            context.write(result, NullWritable.get());
         }
+
+
 
     }
 }
