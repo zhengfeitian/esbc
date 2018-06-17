@@ -10,11 +10,9 @@ LOG_PER_MAP = 100
 
 LogFile = 'random.log'
 
-log_io = open(LogFile,'r')
-output = open('com-map','w')
 
-for line in log_io.readlines():
-# for line in sys.stdin:
+# for line in log_io.readlines():
+for line in sys.stdin:
         # no line
 
         line = line.strip()
@@ -25,8 +23,6 @@ for line in log_io.readlines():
         if state.startswith('in'):
         	seconds *= -1
 
-        # print('%s %s\n' % (user_id,seconds))
-        output.write('%s %s\n' % (user_id,seconds))
+        print('%s %s' % (user_id,seconds))
+        #output.write('%s %s\n' % (user_id,seconds))
 
-log_io.close()
-output.close()

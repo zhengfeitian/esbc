@@ -4,10 +4,8 @@ import datetime
 import sys 
 
 
-f = open('output.txt','r')
-log = open('random.log','w')
-# for line in sys.stdin:
-for line in f.readlines():
+for line in sys.stdin:
+#for line in f.readlines():
 	line = line.strip()
 	seconds, userid, state = line.split(' ',3)
 
@@ -18,7 +16,3 @@ for line in f.readlines():
 		str(userid) + ' ' + \
 		state 
 	print (output_line)
-	log.write(output_line+'\n')
-
-f.close()
-log.close()
