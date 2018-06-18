@@ -17,6 +17,7 @@ public class OnlineCountReducer extends Reducer<IntWritable, Text,IntWritable, I
     Pattern pattern_in_out = Pattern.compile("(in)|(out)");
 
     public void reduce(IntWritable userID, Iterable<Text> logs_raw, Context context) throws IOException,InterruptedException {
+        //这是什么东西
         // int num = 0;
         // for(Text val:logs_raw){
         //     num += 1;
@@ -70,7 +71,7 @@ public class OnlineCountReducer extends Reducer<IntWritable, Text,IntWritable, I
             logs.remove(0);
         }
         while (logs.get(logs.size()-1).get(2)=="in"){
-            online_time_second += (86400 - Integer.getInteger(logs.get(logs.size()-1).get(1)) );
+            online_time_second += (86400 - Integer.getInteger(logs.get(logs.size()-1).get(1)) ); //这个会不会太长了
             logs.remove(logs.size()-1);
         }
 
