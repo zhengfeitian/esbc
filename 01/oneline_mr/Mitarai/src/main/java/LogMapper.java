@@ -15,6 +15,7 @@ public class LogMapper extends Mapper<Text,Text,Text,Userbean> {
         String inorout = fields[2];
         String id = fields[3];
         //封装数据并输出
+        //封装 点赞
         if(inorout.equals("in")) {
             context.write(new Text(id), new Userbean(id,time,"00:00:00"));
         }else {
