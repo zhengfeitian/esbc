@@ -12,7 +12,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-
+//没有注释的吗
 public class mr_Main {
 	public static class TokenizerMapper extends Mapper<Object, Text, Text, Text>{
 		private final static IntWritable one = new IntWritable(1);
@@ -36,6 +36,7 @@ public class mr_Main {
 		public int time;
 		public boolean login;
 	}
+	
 	public static void quickSort(TLog[] numbers, int start, int end) {   
 		if (start < end) {   
 			TLog base = numbers[start];
