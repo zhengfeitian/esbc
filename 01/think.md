@@ -27,3 +27,19 @@
 	- 后来改成假设一天用户行为随机分布，顺序便利一天的每一秒，随机生成一定数量的用户，再随机决定LOGIN LOGOUT
 
 ---
+
+
+
+
+---
+
+关于随机生成以及统计的思路 ——By Makdon
+
+- 随机生成日志
+    - 使用MapReduce生成
+    - 读入的是一个若干行的无意义文件，然后依照行数，Mapper对每一行生成若干个用户的log，以（key：time，value：log）传入reducer
+    - reducer读入log之后，进行排序后输出到文件
+- 计算平均时间
+    - 使用两个MapReduce的Job来进行统计：
+    - 第一个job读入log的文件，输出每个用户的在线时间，如（userID， online_time）
+    - 第二个job读入上一个job的输出，把所有用户的时间取一个平均值，其中用到combiner进行本地合并加速。
