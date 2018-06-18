@@ -85,7 +85,11 @@
         <module name="JavadocType"/>
         <module name="JavadocVariable"/>
         <module name="JavadocStyle"/>
-
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="^\t* "/>
+            <property name="message" value="Indent must use tab characters"/>
+            <property name="ignoreComments" value="true"/>
+        </module>
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
         <module name="ConstantName"/>
