@@ -19,11 +19,11 @@ def merge_user(a):
 		pre=tp[0]
 	return [pre,1]
 
-textFile=sc.textFile("/user/esmLog.txt")
+textFile=sc.textFile("/user/LOG.txt")
 tf = textFile.map(linesplit).reduceByKey(lambda a,b:a+b)
 tf = tf.map(merge_user).reduce(lambda a,b:(a[0]+b[0],a[1]+b[1]))
 
-ans = float(tf[0])/tf[1]
+ans = int(float(tf[0])/tf[1])
 
 
 fl = open("/home/pc/eser/spmr_res.txt","w")
