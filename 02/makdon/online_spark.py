@@ -21,20 +21,25 @@ def get_time_by_second_from_log(log):
     :return int
     """
     time = log.split()[1].split(":")
-    hour = time[0]
-    minute = time[1]
-    second = time[2]
+    hour = int(time[0])
+    minute = int(time[1])
+    second = int(time[2])
     time_by_second = hour*3600 + minute*60 + second
     return time_by_second
 
-def count_one_user_online_mapper(userID, logs):
+def count_one_user_online_mapper(item):
     """
     This function is used to count one user's online time
     :param logs: list of logs, in which are String
     :param return: online_time
     """
+    userID = item[0]
+    logs_iter = item[1]
     online_time = 0
-    logs.sort()
+    logs = list()
+    for iter in logs_iter:
+        logs.append(iter)
+    # logs = list(logs).sort()
     if logs[0].split()[3] == "out":
         # start with logout log
         first_log = logs.pop(0)
@@ -75,7 +80,7 @@ def count(file_path):
     :param file_path: Sting ,the path of the log in the HDFS
     :return result:int
     """
-    logs_raw = SparkContext.textFile(file_path)
+    logs_raw = sc.textFile(file_path)
     userID_and_log = logs_raw.map(map_to_UserID_log).groupByKey()
     user_and_online_time = userID_and_log.map(count_one_user_online_mapper)
     user_and_online_time.cache()
@@ -86,5 +91,7 @@ def count(file_path):
 
 
 if __name__ == "__main__":
-    result = count("/user/log")
+    result = count("/root/logs_spark")
+    result_RDD = sc.parallelize([result])
+    result_RDD.saveAsTextFile("/root/sparkresult")
     
