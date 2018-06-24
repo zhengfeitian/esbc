@@ -68,6 +68,6 @@ public class logAnalysis {
             }
         });
 
-
+        return sum;
     }
 }
