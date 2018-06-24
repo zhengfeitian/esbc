@@ -39,19 +39,19 @@ public class SparkLogAnal {
                 String[] arr = line.split(" ");
                 int h,m,s;
                 if(arr[1].charAt(0)=='0'){
-                    h=Integer.parseInt(String.valueOf(arr[0].charAt(1)));
+                    h=Integer.parseInt(String.valueOf(arr[1].charAt(1)));
                 }else{
-                    h=Integer.parseInt(arr[0]);
+                    h=Integer.parseInt(arr[1]);
                 }
                 if(arr[2].charAt(0)=='0'){
-                    m=Integer.parseInt(String.valueOf(arr[1].charAt(1)));
+                    m=Integer.parseInt(String.valueOf(arr[2].charAt(1)));
                 }else{
-                    m=Integer.parseInt(arr[1]);
+                    m=Integer.parseInt(arr[2]);
                 }
                 if(arr[3].charAt(0)=='0'){
-                    s=Integer.parseInt(String.valueOf(arr[2].charAt(1)));
+                    s=Integer.parseInt(String.valueOf(arr[3].charAt(1)));
                 }else{
-                    s=Integer.parseInt(arr[2]);
+                    s=Integer.parseInt(arr[3]);
                 }
                 //时间转换为秒
                 s=3600*h+60*m+s;
