@@ -21,7 +21,7 @@ public class logAnalysis {
                         String[] arr = line.split(" ");    //拆分
                         int h, m, s;
                         if (arr[1].charAt(0) == '0') {
-                            h = Integer.parseInt(String.valueOf(arr[1].charAt(1)));    //0X to X  （例子）
+                            h = Integer.parseInt(String.valueOf(arr[1].charAt(1)));    //0X to X  
                         } else {
                             h = Integer.parseInt(arr[1]);     //X不变直接拿下来
                         }
