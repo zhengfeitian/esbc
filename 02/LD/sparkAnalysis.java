@@ -21,7 +21,7 @@ public class sparkAnalysis {
         logAnalysis l = new logAnalysis();
         JavaSparkContext sc = new JavaSparkContext();
         JavaRDD<String> lines = sc.textFile("/user/esmLog.txt");
-        JavaPairRDD<String, Integer> LogPairRDD = mapLogRDD2Pair(lines);
+        JavaPairRDD<String, Integer> LogPairRDD = createPair(lines);
         JavaPairRDD<String, Integer> countLogPairRDD =  l.logForCount(LogPairRDD);
         long n=countLogPairRDD.keys().count();
         double average=l.countTime((l.logForCount))/n;
