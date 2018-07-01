@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 public class randomlogger {
 	static String filepath="                         ";
 	static int num=800;//8000000;
-	static long totallog=100000L;//5000000000L;
+	static long totallog=200000L;//5000000000L;
 	static long remainlog;
 	static int []aid=new int[num];
 	static String sh;
