@@ -1,0 +1,17 @@
+跑起kafka：
+首先使用master用户目录下的init-slave.sh ，初始化hostname，启动zookeeper
+然后cd到kafka目录，使用./bin/kafka-server-start.sh config/server.properties启动kafka目录，在另外两台电脑上面也同样启动kafka
+    *如果起不来，可以尝试删除/tmp/kafka-logs内所有东西
+使用bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test 建立topic，此处test是topic的名字
+
+下面是python部分
+
+from kafka import KafkaProducer
+from kafka.errors import KafkaError
+
+producer = KafkaProducer()
+
+# Asynchronous by default
+future = producer.send('test', b'raw_bytes')
+
+就可以向名为test的topic发raw_bytes的消息
