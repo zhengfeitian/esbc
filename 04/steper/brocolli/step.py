@@ -15,6 +15,8 @@ def main():
         temp = kafka.map(lambda x:(x[1].split(" ")[2],0)).groupByKey().count()
 
         temp.pprint()
+        print(type(temp))
+        temp.saveAsTextFiles('/user/output/')
 
         ssc.start()
         ssc.awaitTermination()
@@ -23,3 +25,4 @@ def main():
 
 if __name__ == '__main__':
         main()
+
