@@ -6,7 +6,7 @@
 
 
 使用文档：
-*以下操作皆为master上运行
+* 以下操作皆为master上运行
 
 - 开启系统后，先使用init-slave.sh，为每个电脑初始化hostname，并启动zookeeper
 - 然后cd进入kafka目录， ./bin/kafka-server-start.sh config/server.properties 启动kafka服务器
